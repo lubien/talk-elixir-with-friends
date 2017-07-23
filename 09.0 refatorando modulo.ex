@@ -2,7 +2,7 @@ defmodule Reader do
   def start_reading() do
     receive do
       {:msg, contents} ->
-        IO.puts("Atual recebeu: " <> contents)
+        IO.puts("Leitor recebeu: " <> contents)
     end
 
     start_reading()

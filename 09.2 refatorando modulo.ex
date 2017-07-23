@@ -8,7 +8,7 @@ defmodule Reader do
   defp loop() do #1
     receive do
       {:msg, contents} ->
-        IO.puts("Atual recebeu: " <> contents)
+        IO.puts("Leitor recebeu: " <> contents)
     end
 
     loop()

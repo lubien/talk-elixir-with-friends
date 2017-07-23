@@ -1,14 +1,13 @@
-current_process = self()
-
-spawn(fn ->
-  send(current_process, {:msg, "hello world"})
-  send(current_process, {:msg, "hello again"})
-  send(current_process, {:msg, "more hellos"})
+pid = spawn(fn ->
+  for _ <- 1..2 do
+    receive do
+      {:msg, contents} ->
+        IO.puts("Atual recebeu: " <> contents)
+    end
+  end
 end)
 
-for _ <- 1..2 do
-  receive do
-    {:msg, contents} ->
-      IO.puts("Atual recebeu: " <> contents)
-  end
-end
+send(pid, {:msg, "hello world"})
+send(pid, {:msg, "hello again"})
+send(pid, {:msg, "more hellos"})
+
